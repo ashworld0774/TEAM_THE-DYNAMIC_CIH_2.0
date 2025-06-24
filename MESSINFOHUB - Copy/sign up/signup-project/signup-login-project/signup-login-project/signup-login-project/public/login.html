@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #ff6b00;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .input-group i {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: #ff6b00;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #ff6b00;
+        }
+        
+        button {
+            background-color: #ff6b00;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #e05d00;
+        }
+        
+        .signup-link {
+            display: block;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .signup-link:hover {
+            color: #ff6b00;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider::before {
+            margin-right: 10px;
+        }
+        
+        .divider::after {
+            margin-left: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .login-container {
+                width: 90%;
+                padding: 30px 20px;
+                margin: 0 10px;
+            }
+            
+            h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            input {
+                padding: 10px 15px 10px 40px;
+                font-size: 13px;
+            }
+            
+            .input-group i {
+                top: 10px;
+                font-size: 14px;
+            }
+            
+            button {
+                padding: 10px 15px;
+                font-size: 15px;
+            }
+            
+            .signup-link {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .login-container {
+                padding: 25px 15px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            input {
+                padding: 8px 12px 8px 35px;
+            }
+            
+            .input-group i {
+                top: 8px;
+                left: 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required />
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required />
+            </div>
+            
+            <button type="submit">
+                <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i> Login
+            </button>
+        </form>
+        
+        <div class="divider">OR</div>
+        
+        <a href="signup.html" class="signup-link">
+            <i class="fas fa-user-plus" style="margin-right: 5px;"></i> Don't have an account? Sign Up
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start - Edit Your Mess</title>
+  <style>
+    :root {
+      --primary-color: #FF6B00;
+      --primary-light: #FF9E40;
+      --primary-dark: #E65100;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+      --medium-gray: #E0E0E0;
+      --dark-gray: #757575;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-gray);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: var(--white);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h2 {
+      font-weight: 600;
+    }
+
+    .profile-section {
+      display: flex;
+      padding: 20px;
+      border-bottom: 1px solid var(--medium-gray);
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: var(--medium-gray);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-pic .edit-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      text-align: center;
+      padding: 5px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .profile-pic:hover .edit-overlay {
+      display: block;
+    }
+
+    .profile-info {
+      flex: 1;
+      padding-left: 20px;
+    }
+
+    .profile-info input, 
+    .profile-info textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid var(--medium-gray);
+      border-radius: 4px;
+    }
+
+    .profile-info textarea {
+      height: 60px;
+      resize: vertical;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 300px;
+      background-color: var(--medium-gray);
+      margin: 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .main-image .edit-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .gallery-section {
+      padding: 20px;
+    }
+
+    .gallery-title {
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .image-upload {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .image-preview {
+      width: 100px;
+      height: 100px;
+      background-color: var(--medium-gray);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-preview .remove-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: rgba(255, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .upload-btn {
+      background-color: var(--primary-light);
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .status-section {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-top: 1px solid var(--medium-gray);
+    }
+
+    .status-label {
+      margin-right: 15px;
+      font-weight: 500;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .action-buttons {
+      padding: 20px;
+      text-align: right;
+    }
+
+    .update-btn {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .update-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .modal-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .modal-content button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .profile-section {
+        flex-direction: column;
+      }
+      
+      .profile-info {
+        padding-left: 0;
+        margin-top: 15px;
+      }
+      
+      .main-image {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Edit Mess Details</h2>
+    </div>
+    
+    <div class="profile-section">
+      <div class="profile-pic">
+        <img id="profileImage" src="" alt="Profile Picture">
+        <div class="edit-overlay">Change Photo</div>
+        <input type="file" id="profileUpload" style="display: none;" accept="image/*">
+      </div>
+      
+      <div class="profile-info">
+        <input type="text" id="messName" placeholder="Mess Name" value="">
+        <input type="text" id="ownerName" placeholder="Owner Name" value="">
+        <textarea id="shortDescription" placeholder="Short description about your mess"></textarea>
+      </div>
+    </div>
+    
+    <div class="main-image">
+      <img id="mainMessImage" src="" alt="Mess Image">
+      <div class="edit-overlay">Change Main Image</div>
+      <input type="file" id="mainImageUpload" style="display: none;" accept="image/*">
+    </div>
+    
+    <div class="gallery-section">
+      <div class="gallery-title">Mess Gallery Images</div>
+      <input type="file" id="galleryUpload" style="display: none;" accept="image/*" multiple>
+      <button class="upload-btn" onclick="document.getElementById('galleryUpload').click()">Upload Images</button>
+      
+      <div class="image-upload" id="galleryPreview">
+        <!-- Gallery images will appear here -->
+      </div>
+    </div>
+    
+    <div class="status-section">
+      <div class="status-label">Mess Status:</div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="statusToggle">
+        <span class="slider"></span>
+      </label>
+      <div class="status-text" id="statusText" style="margin-left: 10px;">Online</div>
+    </div>
+    
+    <form id="editForm">
+      <textarea name="description" placeholder="Detailed Mess Description" style="display: none;"></textarea>
+      <input type="text" name="images" placeholder="Image URL (comma-separated)" style="display: none;">
+      
+      <div class="action-buttons">
+        <button type="submit" class="update-btn">Update</button>
+      </div>
+    </form>
+  </div>
+  
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <h3>Thank You!</h3>
+      <p>Your updates have been saved successfully.</p>
+      <button onclick="closeModal()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Profile image upload
+    document.querySelector('.profile-pic').addEventListener('click', function() {
+      document.getElementById('profileUpload').click();
+    });
+    
+    document.getElementById('profileUpload').addEventListener('change', function(e) {
+      if (e.target.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('profileImage').src = event.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+    
+    // Main image upload
+    document.querySelector('.main-image').addEventListener('click', function() {
+      document.getElementById('mainImageUpload').click();
+    });
+    
+    document.getElementById('mainImageUpload').addEventListener('change', function(e) {
+      if (e.target.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('mainMessImage').src = event.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+    
+    // Gallery images upload
+    document.getElementById('galleryUpload').addEventListener('change', function(e) {
+      const galleryPreview = document.getElementById('galleryPreview');
+      
+      for (let i = 0; i < e.target.files.length; i++) {
+        const file = e.target.files[i];
+        const reader = new FileReader();
+        
+        reader.onload = function(event) {
+          const imagePreview = document.createElement('div');
+          imagePreview.className = 'image-preview';
+          
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          
+          const removeBtn = document.createElement('button');
+          removeBtn.className = 'remove-btn';
+          removeBtn.innerHTML = '×';
+          removeBtn.onclick = function() {
+            imagePreview.remove();
+          };
+          
+          imagePreview.appendChild(img);
+          imagePreview.appendChild(removeBtn);
+          galleryPreview.appendChild(imagePreview);
+        };
+        
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Status toggle
+    document.getElementById('statusToggle').addEventListener('change', function() {
+      document.getElementById('statusText').textContent = this.checked ? 'Online' : 'Offline';
+    });
+    
+    // Form submission
+    document.getElementById('editForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Collect all data
+      const description = document.getElementById('shortDescription').value;
+      const galleryImages = Array.from(document.querySelectorAll('#galleryPreview img')).map(img => img.src);
+      
+      // In a real app, you would upload the images to a server and get URLs
+      // For this example, we'll just use the data URLs
+      const images = galleryImages.join(',');
+      
+      const res = await fetch('/edit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          description, 
+          images,
+          messName: document.getElementById('messName').value,
+          ownerName: document.getElementById('ownerName').value,
+          status: document.getElementById('statusToggle').checked ? 'online' : 'offline'
+        })
+      });
+
+      const msg = await res.text();
+      if (res.ok) {
+        showModal();
+      } else {
+        alert('Error: ' + msg);
+      }
+    });
+    
+    function showModal() {
+      document.getElementById('successModal').style.display = 'flex';
+    }
+    
+    function closeModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Mess Info Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #f97316, #f59e0b);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .form-box, .info-box {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border: 2px solid transparent;
+      background-image: linear-gradient(white, white), linear-gradient(135deg, #f97316, #f59e0b);
+      background-origin: padding-box, border-box;
+      background-clip: padding-box, border-box;
+      flex: 1 1 400px;
+      min-width: 300px;
+    }
+
+    .form-box form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-box input,
+    .form-box textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .form-box button {
+      width: 100%;
+      background: linear-gradient(135deg, #f97316, #f59e0b);
+      color: white;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .form-box button:hover {
+      opacity: 0.9;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #f97316, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #fff7ed;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
+    }
+
+    .card-icon {
+      background: linear-gradient(135deg, #f97316, #f59e0b);
+      color: white;
+      padding: 10px;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card h3 {
+      font-weight: bold;
+      margin: 0 0 5px;
+    }
+
+    .card p {
+      margin: 0 0 5px;
+    }
+
+    .card a {
+      color: #ea580c;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      background-color: #131313ea;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+   color: white;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #f97316;
+    }
+
+    .footer p {
+      margin-top: 20px;
+      font-size: 14px;
+       color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>Contact Us</h1>
+    <p>Got questions or feedback? We're here to help you find the perfect mess service.</p>
+  </header>
+
+  <!-- Main Section -->
+  <main class="section">
+    <!-- Form Box -->
+    <div class="form-box">
+      <h2 class="title">Send us a message</h2>
+      <form id="contactForm">
+        <label>Your Name</label>
+        <input type="text" id="name" name="name" required />
+        <label>Email Address</label>
+        <input type="email" id="email" name="email" required />
+        <label>Your Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box">
+      <h2 class="title">Other ways to reach us</h2>
+
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <h3>Email Support</h3>
+          <p>Drop us an email and we'll get back to you within 24 hours</p>
+          <a href="mailto:support@messinfohub.in">support@messinfohub.in</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+        <div>
+          <h3>WhatsApp</h3>
+          <p>Chat with us directly on WhatsApp for quick responses</p>
+          <a href="https://wa.me/91XXXXXXXXXX">+91-XXXXXXXXXX</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-phone"></i></div>
+        <div>
+          <h3>Contact Us </h3>
+          <p>Talk with us directly for quick responses</p>
+          <a href="https://wa.me/91XXXXXXXXXX">+918767252122</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>© 2023 Mess Info Hub. All rights reserved.</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      console.log('Form submitted:', { name, email, message });
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

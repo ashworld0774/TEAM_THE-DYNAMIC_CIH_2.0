@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Mess Info Hub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+    }
+    header {
+      background: linear-gradient(135deg, #ff9a3c, #ff6b6b);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .center {
+      text-align: center;
+    }
+    .image {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+    .half {
+      flex: 1;
+      min-width: 280px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .feature-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .feature-box:hover {
+      transform: translateY(-5px);
+    }
+    .feature-icon {
+      font-size: 30px;
+      color: #ff6b6b;
+      margin-bottom: 10px;
+    }
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .team-card {
+      background: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .team-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+    }
+    .social a {
+      color: #bbb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .social a:hover {
+      color: white;
+    }
+    @media (max-width: 768px) {
+  header {
+    padding: 40px 15px;
+  }
+
+  section {
+    padding: 30px 15px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .half {
+    min-width: 100%;
+  }
+
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .features, .team {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-box, .team-card {
+    padding: 15px;
+  }
+
+  .team-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  footer {
+    padding: 15px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 24px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  section h2 {
+    font-size: 20px;
+  }
+
+  .feature-icon {
+    font-size: 24px;
+  }
+
+  .team-card h3 {
+    font-size: 18px;
+  }
+
+  .team-card p {
+    font-size: 14px;
+  }
+
+  .social a {
+    font-size: 18px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About Us</h1>
+    <p>Discover the story behind Mess Info Hub</p>
+  </header>
+
+  <section class="center">
+    <h2>Our Mission</h2>
+    <p>Mess Info Hub helps people find clean, affordable, and reliable mess food options near them.</p>
+  </section>
+
+  <section>
+    <div class="row">
+      <div class="half">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" class="image" alt="Students">
+      </div>
+      <div class="half">
+        <h2>Our Story</h2>
+        <p>Our founders faced difficulty finding good mess food while studying in Nagpur. This gave birth to Mess Info Hub.</p>
+        <p>We help students and newcomers find hygienic, affordable, and tasty food in new cities.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="center">What We Offer</h2>
+    <div class="features">
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+        <h3>Mess Listings</h3>
+        <p>Details with photos, menu, pricing, and hygiene ratings.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+        <h3>Subscriptions</h3>
+        <p>Monthly, quarterly, yearly plans to suit your budget.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <h3>Location Filters</h3>
+        <p>Find messes near college, work, or home.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fas fa-star-half-alt"></i></div>
+        <h3>Ratings & Contact</h3>
+        <p>Read reviews and contact mess providers directly.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h2 class="center">Meet the Team</h2>
+    <div class="team">
+      <div class="team-card">
+        <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg?semt=ais_hybrid&w=740" class="team-img" alt="shubham munde">
+        <h3>Shubham Munde</h3>
+        <p>Co-Founder & CTO</p>
+      </div>
+      <div class="team-card">
+        <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg?semt=ais_hybrid&w=740" class="team-img" alt="piyush nipane">
+        <h3>Piyush Nipane</h3>
+        <p>Co-Founder & CEO</p>
+      </div>
+      <div class="team-card">
+        <img src="data:image/jpeg;base64,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" class="team-img" alt="Aishwarya dhole">
+        <h3>Aishwarya Dhole</h3>
+        <p>Head of Operations</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h2>Mess Info Hub</h2>
+    <p>Helping people find good food since 2023</p>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p style="margin-top: 10px">&copy; 2023 Mess Info Hub</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Feedback Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #fb8c00;
+      --primary-light: #ffa726;
+      --primary-dark: #f57c00;
+      --white: #ffffff;
+      --off-white: #fff8f0;
+      --text: #333333;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--off-white);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    h2, h3 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .form-container, .feedback-box {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--primary);
+    }
+    
+    .form-container {
+      background-color: var(--primary-light);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(251, 140, 0, 0.2);
+    }
+    
+    .rating-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .rating-options {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+    
+    .rating-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .rating-option input {
+      display: none;
+    }
+    
+    .rating-stars {
+      font-size: 24px;
+      color: #ddd;
+      transition: all 0.2s;
+    }
+    
+    .rating-option input:checked ~ .rating-stars,
+    .rating-option:hover .rating-stars {
+      color: var(--primary-dark);
+      transform: scale(1.1);
+    }
+    
+    .rating-option:hover input:not(:checked) ~ .rating-stars {
+      color: var(--primary-light);
+    }
+    
+    button {
+      background-color: var(--primary);
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 20px auto 0;
+    }
+    
+    button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .feedback-box {
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+    
+    .feedback-box:hover {
+      transform: translateY(-5px);
+    }
+    
+    .feedback-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .feedback-name {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    
+    .feedback-rating {
+      color: var(--primary);
+      font-size: 18px;
+    }
+    
+    .feedback-content {
+      font-style: italic;
+      margin-top: 10px;
+    }
+    
+    .feedback-meta {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .form-container, .feedback-box {
+        padding: 20px;
+      }
+      
+      .rating-options {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .rating-option {
+        flex: 1 0 40%;
+      }
+      
+      button {
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .rating-option {
+        flex: 1 0 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Customer Feedback Form</h2>
+    <div class="form-container">
+      <form id="feedbackForm">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email" required />
+        </div>
+        
+        <div class="form-group">
+          <label>1. Is this website easy to use?</label>
+          <select name="question1" required>
+            <option value="">Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>2. Is this a user-friendly website?</label>
+          <select name="question2" required>
+            <option value="">Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>3. How did you know about this website?</label>
+          <input type="text" name="question3" required />
+        </div>
+        
+        <div class="form-group">
+          <label>4. Rate our website:</label>
+          <div class="rating-container">
+            <div class="rating-options">
+              <label class="rating-option">
+                <input type="radio" name="rating" value="1" required />
+                <div class="rating-stars">⭐</div>
+                <div>1 (Poor)</div>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="2" />
+                <div class="rating-stars">⭐⭐</div>
+                <div>2 (Fair)</div>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="3" />
+                <div class="rating-stars">⭐⭐⭐</div>
+                <div>3 (Good)</div>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="4" />
+                <div class="rating-stars">⭐⭐⭐⭐</div>
+                <div>4 (Very Good)</div>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="5" />
+                <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+                <div>5 (Excellent)</div>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>5. Tell us about your experience:</label>
+          <textarea name="experience" rows="4" placeholder="Share your thoughts..." required></textarea>
+        </div>
+        
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </div>
+
+    <div id="feedbackContainer">
+      <h3>Customer Reviews</h3>
+      <div id="feedbackList"></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("feedbackForm");
+    const feedbackList = document.getElementById("feedbackList");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Simulate form submission (since we don't have actual backend)
+      setTimeout(() => {
+        alert("Thank you for your valuable feedback!");
+        form.reset();
+        // Add the new feedback to the list (simulated)
+        addFeedbackToDOM(data);
+      }, 500);
+      
+      // Original code commented out since we don't have backend endpoints
+      /*
+      const res = await fetch("/submit-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        alert("Thank you for your valuable feedback!");
+        form.reset();
+        loadFeedback();
+      }
+      */
+    });
+
+    function addFeedbackToDOM(feedback) {
+      const box = document.createElement("div");
+      box.className = "feedback-box";
+      box.innerHTML = `
+        <div class="feedback-header">
+          <span class="feedback-name">${feedback.name}</span>
+          <span class="feedback-rating">${'⭐'.repeat(feedback.rating)}</span>
+        </div>
+        <div class="feedback-content">${feedback.experience}</div>
+        <div class="feedback-meta">
+          <span>${new Date().toLocaleDateString()}</span>
+          <span>Q1: ${feedback.question1}</span>
+        </div>
+      `;
+      feedbackList.prepend(box);
+    }
+
+    // Simulate loading some sample feedbacks
+    function loadSampleFeedback() {
+      const sampleFeedbacks = [
+        {
+          name: "Sahil Ramteke",
+          rating: "5",
+          experience: "This website is fantastic! Very intuitive and easy to navigate. Found exactly what I needed in seconds.",
+          question1: "Yes",
+          date: "2023-06-15"
+        },
+        {
+          name: "Tushar Kherde",
+          rating: "4",
+          experience: "Great overall experience. Would love to see more filtering options in the search functionality.",
+          question1: "Yes",
+          date: "2023-06-10"
+        }
+      ];
+      
+      sampleFeedbacks.forEach(fb => addFeedbackToDOM(fb));
+    }
+
+    // Original loadFeedback function (commented out since we don't have backend)
+    /*
+    async function loadFeedback() {
+      const res = await fetch("/feedbacks");
+      const feedbacks = await res.json();
+      feedbackList.innerHTML = "";
+      feedbacks.forEach(fb => {
+        addFeedbackToDOM(fb);
+      });
+    }
+    */
+    
+    // Load sample feedback on page load
+    loadSampleFeedback();
+    // Original: loadFeedback();
+  </script>
+</body>
+</html>

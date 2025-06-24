@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mess Owner Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #FF6B00;
+      --primary-light: #FF9E40;
+      --white: #FFFFFF;
+      --light-bg: #FFF5EF;
+      --dark: #2E2E2E;
+      --gray: #6B6B6B;
+      --light-gray: #E9E9E9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.05) 0%, rgba(255, 107, 0, 0.05) 90%);
+    }
+
+    .registration-container {
+      width: 100%;
+      max-width: 520px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .registration-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+
+    .registration-header {
+      padding: 30px 30px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .registration-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+    }
+
+    .registration-icon i {
+      color: var(--white);
+      font-size: 30px;
+    }
+
+    .registration-header h2 {
+      color: var(--dark);
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .registration-header p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .registration-form {
+      padding: 0 30px 30px;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .form-group i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 16px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px 15px 15px 48px;
+      border: 1px solid var(--light-gray);
+      border-radius: 10px;
+      font-size: 15px;
+      color: var(--dark);
+      transition: all 0.3s;
+      background-color: var(--white);
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+    }
+
+    .form-group input::placeholder {
+      color: var(--gray);
+      opacity: 0.7;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .registration-container {
+        max-width: 480px;
+      }
+      
+      .registration-header {
+        padding: 25px 25px 15px;
+      }
+      
+      .registration-form {
+        padding: 0 25px 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+      
+      .registration-header h2 {
+        font-size: 22px;
+      }
+      
+      .registration-icon {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .registration-icon i {
+        font-size: 26px;
+      }
+      
+      .form-group input {
+        padding: 13px 13px 13px 45px;
+        font-size: 14px;
+      }
+      
+      .submit-btn {
+        padding: 14px;
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .registration-header {
+        padding: 20px 20px 10px;
+      }
+      
+      .registration-form {
+        padding: 0 20px 20px;
+      }
+      
+      .registration-header h2 {
+        font-size: 20px;
+      }
+      
+      .form-group input {
+        padding: 12px 12px 12px 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="registration-container">
+    <div class="registration-header">
+      <div class="registration-icon">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <h2>Register Your Mess</h2>
+      <p>Join our network of premium mess services</p>
+    </div>
+
+    <form class="registration-form" action="/register" method="POST">
+      <div class="form-group">
+        <i class="fas fa-home"></i>
+        <input type="text" name="messName" placeholder="Mess Name" required>
+      </div>
+      
+      <div class="form-group">
+        <i class="fas fa-user-tie"></i>
+        <input type="text" name="ownerName" placeholder="Owner Name" required>
+      </div>
+      
+      <div class="form-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      
+      <div class="form-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      
+      <div class="form-group">
+        <i class="fas fa-map-marker-alt"></i>
+        <input type="text" name="address" placeholder="Address" required>
+      </div>
+      
+      <div class="form-group">
+        <i class="fas fa-mobile-alt"></i>
+        <input type="text" name="mobile" placeholder="Mobile No" required>
+      </div>
+      
+      <button type="submit" class="submit-btn">
+        <i class="fas fa-user-plus"></i> Register Now
+      </button>
+    </form>
+  </div>
+</body>
+</html>
