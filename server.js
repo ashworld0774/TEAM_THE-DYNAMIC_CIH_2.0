@@ -4,78 +4,59 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
-const Verification = require('./models/Verification');
+const Feedback = require('./models/Feedback');
 
 dotenv.config();
 
 const app = express();
-const PORT = 3005;
+const PORT = 3008;
 
-// Middleware
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// MongoDB Connection
+// ✅ No deprecated options
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.error("MongoDB Error:", err));
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.log(err));
 
-// Email setup
+// ✅ Thank-you email using Nodemailer
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS
   }
 });
 
-// Routes
-app.post('/verify', async (req, res) => {
-  const { username, messname } = req.body;
-
-  // 📌 Dummy mess owner details (you can replace this with DB logic later)
-  const ownerDetails = {
-    ownerName: "Shubham Munde",
-    mobile: "9876543210"
-  };
-
-  const verification = new Verification({
-    username,
-    messname,
-    mobile: ownerDetails.mobile,
-    address: "Default Address",
-    email: "default@email.com"
-  });
-
-  await verification.save();
-
-  const message = `
-    New Verification Received:
-    User Name: ${username}
-    Mess Name: ${messname}
-    Owner Name: ${ownerDetails.ownerName}
-    Mobile: ${ownerDetails.mobile}
-  `;
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: ['shubhammumnde8767@gmail.com', 'piyushnipane74@gmail.com', 'dholeaishwarya258@gmail.com'],
-    subject: 'New Mess Verification',
-    text: message
-  };
-
+app.post('/submit-feedback', async (req, res) => {
   try {
-    await transporter.sendMail(mailOptions);
-    // Send data back to frontend for popup
-    res.status(200).json({
-      ownerName: ownerDetails.ownerName,
-      mobile: ownerDetails.mobile,
-      messname: messname
+    const newFeedback = new Feedback(req.body);
+    await newFeedback.save();
+
+    // ✅ Send email
+    await transporter.sendMail({
+      from: process.env.MAIL_USER,
+      to: req.body.email,
+      subject: 'Thanks for Your Feedback!',
+      text: `Dear ${req.body.name},\n\nThank you for your valuable feedback on our website!\n\nRegards,\nTeam`
     });
+
+    res.status(200).json({ message: "Feedback submitted!" });
   } catch (err) {
-    console.error("Email Error:", err);
-    res.status(500).send("Failed to send email");
+    res.status(500).json({ error: err.message });
   }
 });
 
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+// ✅ Fetch all feedbacks
+app.get('/feedbacks', async (req, res) => {
+  const feedbacks = await Feedback.find().sort({ date: -1 });
+  res.json(feedbacks);
+});
+
+// ✅ Start server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+});
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "feedback.html"));
+});
